@@ -20,6 +20,8 @@ def username_from_id(identifier):
     contents = profile_header.find("h1").text.replace("\n", "").replace("\r", "").split('/')
     return contents[0]
 
-
-
-print(last_seen(1549397))
+def get_karma(identifier):
+    source = get_parsed_page(identifier)
+    soup = BeautifulSoup(source, "lxml")
+    karma = soup.find("span", {"id": "karma-1549397"}).getText()
+    return karma
